@@ -1,6 +1,6 @@
 import serial
 # serialPort = "/dev/ttyUSB0"  # For Linux
-serialPort = "COM6"  # For Windows
+serialPort = "COM8"  # For Windows
 baudRate = 9600
 
 ser = serial.Serial(
