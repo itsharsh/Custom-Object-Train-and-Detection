@@ -27,7 +27,7 @@ def sendDataToSerial(data):
 MR_Bit = '1'
 
 #0-Disable, 1-Enable
-LE_Bit = '0'
+LE_Bit = '1'
 TCE_Bit = '0'  # Thermal Camera
 ZCE_Bit = '0'
 
@@ -37,10 +37,10 @@ ZE_Bit = '0'
 FE_Bit = '0'
 
 #0-Right/Down/Out, 1-Left/Up/In
-PLR_Bit = '1'   # Depends on PE_Bit
-TUD_Bit = '1'   # Depends on TE_Bit
-ZIO_Bit = '1'   # Depends on ZCE_Bit
-FIO_Bit = '1'   # Depends on ZCE_Bit
+PLR_Bit = '0'   # Depends on PE_Bit
+TUD_Bit = '0'   # Depends on TE_Bit
+ZIO_Bit = '0'   # Depends on ZCE_Bit
+FIO_Bit = '0'   # Depends on ZCE_Bit
 
 data = FIO_Bit+ZIO_Bit+TUD_Bit+PLR_Bit+FE_Bit + \
     ZE_Bit+TE_Bit+PE_Bit+ZCE_Bit+TCE_Bit+LE_Bit+MR_Bit
