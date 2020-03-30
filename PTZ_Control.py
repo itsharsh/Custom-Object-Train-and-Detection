@@ -45,8 +45,8 @@ FIO_Bit = '0'   # Depends on ZCE_Bit
 data = FIO_Bit+ZIO_Bit+TUD_Bit+PLR_Bit+FE_Bit + \
     ZE_Bit+TE_Bit+PE_Bit+ZCE_Bit+TCE_Bit+LE_Bit+MR_Bit
 
-print("Binary Data: "+data)
+print("Binary Data: {}".format(data))
 data = int(data, 2)
-print("Decimal Data to sent: "+data)
+print("Decimal Data to sent: {}".format(data))
 
 sendDataToSerial(data)
