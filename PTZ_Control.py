@@ -34,11 +34,11 @@ TUD_Bit = '0'
 ZIO_Bit = '0'
 FIO_Bit = '0'
 
-data = MR_Bit+LE_Bit+TCE_Bit+ZCE_Bit+PE_Bit+TE_Bit + \
-    ZE_Bit+FE_Bit+PLR_Bit+TUD_Bit+ZIO_Bit+FIO_Bit
+data = FIO_Bit+ZIO_Bit+TUD_Bit+PLR_Bit+FE_Bit + \
+    ZE_Bit+TE_Bit+PE_Bit+ZCE_Bit+TCE_Bit+LE_Bit+MR_Bit
 
-data = data.encode()
-
+print(data)
+data = int(data, 2)
 print(data)
 
 ser.write(data)
