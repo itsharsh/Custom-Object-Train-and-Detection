@@ -157,40 +157,39 @@ def receiveDataFromSerial(ser):
                 try:
                     if(int(data, 10) == ptzControl()):
                         i += 1
-                        print("Acknowledgement from Arduino")
                 except ValueError as e:
                     print("\t\t\t\t\t\tReceived from Arduino: {}".format(
                         data.decode('utf-8')))
-                if i % 2 == 0:
-                    ledOn()
-                else:
-                    ledOff()
-
-                # if i == 1:
-                #     panLeft()
-                # elif i == 2:
-                #     panRight()
-                # elif i == 3:
-                #     tiltUp()
-                # elif i == 4:
-                #     tiltDown()
-                # elif i == 5:
-                #     zoomIn()
-                # elif i == 6:
-                #     zoomOut()
-                # elif i == 7:
-                #     focusIn()
-                # elif i == 8:
-                #     focusOut()
-                # elif i == 9:
-                #     thermalOn()
-                # elif i == 10:
-                #     thermalOff()
-                # elif i == 11:
+                # if i % 2 == 0:
                 #     ledOn()
-                # elif i == 12:
+                # else:
                 #     ledOff()
-                #     i = 1
+
+                if i == 1:
+                    panLeft()
+                elif i == 2:
+                    panRight()
+                elif i == 3:
+                    tiltUp()
+                elif i == 4:
+                    tiltDown()
+                elif i == 5:
+                    zoomIn()
+                elif i == 6:
+                    zoomOut()
+                elif i == 7:
+                    focusIn()
+                elif i == 8:
+                    focusOut()
+                elif i == 9:
+                    thermalOn()
+                elif i == 10:
+                    thermalOff()
+                elif i == 11:
+                    ledOn()
+                elif i == 12:
+                    ledOff()
+                    i = 1
 
             sendDataToSerial(ser, ptzControl())
             time.sleep(0.1)
