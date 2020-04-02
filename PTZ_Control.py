@@ -36,13 +36,13 @@ def ledOff():
 
 
 def thermalOn():
-    global TE_Bit
-    TE_Bit = '1'
+    global TCE_Bit
+    TCE_Bit = '1'
 
 
 def thermalOff():
-    global TE_Bit
-    TE_Bit = '0'
+    global TCE_Bit
+    TCE_Bit = '0'
 
 
 def panOn():
