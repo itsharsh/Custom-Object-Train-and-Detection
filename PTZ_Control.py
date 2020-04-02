@@ -66,13 +66,13 @@ def tiltOff():
 
 
 def zoomOn():
-    global ZE_Bit
-    ZE_Bit = '1'
+    global ZCE_Bit
+    ZCE_Bit = '1'
 
 
 def zoomOff():
-    global ZE_Bit
-    ZE_Bit = '0'
+    global ZCE_Bit
+    ZCE_Bit = '0'
 
 
 def panLeft():
@@ -100,24 +100,28 @@ def tiltDown():
 
 
 def zoomIn():
+    zoomOn()
     global ZE_Bit, ZIO_Bit
     ZE_Bit = '1'
     ZIO_Bit = '1'
 
 
 def zoomOut():
+    zoomOn()
     global ZE_Bit, ZIO_Bit
     ZE_Bit = '1'
     ZIO_Bit = '0'
 
 
 def focusIn():
+    zoomOn()
     global FE_Bit, FIO_Bit
     FE_Bit = '1'
     FIO_Bit = '1'
 
 
 def focusOut():
+    zoomOn()
     global FE_Bit, FIO_Bit
     FE_Bit = '1'
     FIO_Bit = '0'
