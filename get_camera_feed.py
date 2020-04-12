@@ -2,177 +2,22 @@ import cv2
 import time
 from datetime import datetime
 
-ptzCameraSource = 0
-camera1Source = "1.mp4"
-camera2Source = "2.mp4"
-camera3Source = "3.mp4"
-camera4Source = "4.mp4"
-camera5Source = "5.mp4"
+Streams=int(input('Stream Classes:'))
+
+camera0Source = "/home/vivek/AdTracker/test1.mp4"
+camera1Source = "/home/vivek/AdTracker/test2.mp4"
+camera2Source = "/home/vivek/AdTracker/test3.mp4"
+camera3Source = "/home/vivek/AdTracker/test4.mp4"
+camera4Source = "/home/vivek/AdTracker/test5.mp4"
+camera5Source = "/home/vivek/AdTracker/test6.mp4"
+
+camera6Source = "/home/vivek/AdTracker/test7.mp4"
+camera7Source = "/home/vivek/AdTracker/test8.mp4"
+camera8Source = "/home/vivek/AdTracker/test9.mp4"
+camera9Source = "/home/vivek/AdTracker/test10.mp4"
+camera10Source = "/home/vivek/AdTracker/test11.mp4"
+camera11Source = "/home/vivek/AdTracker/test12.mp4"
 
 
-class PTZCamera():
-    camera = cv2.VideoCapture(ptzCameraSource)
-    @staticmethod
-    def frames():
-        while True:
-            # read current frame
-            _, frame = PTZCamera.camera.read()
-            _, jpeg = cv2.imencode('.jpg', frame)
-            yield jpeg.tobytes()
-            if(type(ptzCameraSource) is str):
-                time.sleep(0.040)
-
-
-class PTZCameraProcessed():
-    camera = cv2.VideoCapture(ptzCameraSource)
-    @staticmethod
-    def frames():
-        while True:
-            # read current frame
-            _, frame = PTZCameraProcessed.camera.read()
-            cv2.putText(frame, datetime.now().strftime("%Y/%m/%d-%H:%M:%S.%f")[:-3], (10, 30),
-                        cv2.FONT_HERSHEY_COMPLEX, 0.75, (255, 255, 255), 1)
-            _, jpeg = cv2.imencode('.jpg', frame)
-            yield jpeg.tobytes()
-            if(type(ptzCameraSource) is str):
-                time.sleep(0.040)
-
-
-class Camera1():
-    camera = cv2.VideoCapture(camera1Source)
-    @staticmethod
-    def frames():
-        while True:
-            # read current frame
-            _, frame = Camera1.camera.read()
-            _, jpeg = cv2.imencode('.jpg', frame)
-            yield jpeg.tobytes()
-            if(type(camera1Source) is str):
-                time.sleep(0.040)
-
-
-class Camera1Processed():
-    camera = cv2.VideoCapture(camera1Source)
-    @staticmethod
-    def frames():
-        while True:
-            # read current frame
-            _, frame = Camera1Processed.camera.read()
-            cv2.putText(frame, datetime.now().strftime("%Y/%m/%d-%H:%M:%S.%f")[:-3], (10, 30),
-                        cv2.FONT_HERSHEY_COMPLEX, 0.75, (255, 255, 255), 1)
-            _, jpeg = cv2.imencode('.jpg', frame)
-            yield jpeg.tobytes()
-            if(type(camera1Source) is str):
-                time.sleep(0.040)
-
-
-class Camera2():
-    camera = cv2.VideoCapture(camera2Source)
-    @staticmethod
-    def frames():
-        while True:
-            # read current frame
-            _, frame = Camera2.camera.read()
-            _, jpeg = cv2.imencode('.jpg', frame)
-            yield jpeg.tobytes()
-            if(type(camera2Source) is str):
-                time.sleep(0.040)
-
-
-class Camera2Processed():
-    camera = cv2.VideoCapture(camera2Source)
-    @staticmethod
-    def frames():
-        while True:
-            # read current frame
-            _, frame = Camera2Processed.camera.read()
-            cv2.putText(frame, datetime.now().strftime("%Y/%m/%d-%H:%M:%S.%f")[:-3], (10, 30),
-                        cv2.FONT_HERSHEY_COMPLEX, 0.75, (255, 255, 255), 1)
-            _, jpeg = cv2.imencode('.jpg', frame)
-            yield jpeg.tobytes()
-            if(type(camera2Source) is str):
-                time.sleep(0.040)
-
-
-class Camera3():
-    camera = cv2.VideoCapture(camera3Source)
-    @staticmethod
-    def frames():
-        while True:
-            # read current frame
-            _, frame = Camera3.camera.read()
-            _, jpeg = cv2.imencode('.jpg', frame)
-            yield jpeg.tobytes()
-            if(type(camera3Source) is str):
-                time.sleep(0.040)
-
-
-class Camera3Processed():
-    camera = cv2.VideoCapture(camera3Source)
-    @staticmethod
-    def frames():
-        while True:
-            # read current frame
-            _, frame = Camera3Processed.camera.read()
-            cv2.putText(frame, datetime.now().strftime("%Y/%m/%d-%H:%M:%S.%f")[:-3], (10, 30),
-                        cv2.FONT_HERSHEY_COMPLEX, 0.75, (255, 255, 255), 1)
-            _, jpeg = cv2.imencode('.jpg', frame)
-            yield jpeg.tobytes()
-            if(type(camera3Source) is str):
-                time.sleep(0.040)
-
-
-class Camera4():
-    camera = cv2.VideoCapture(camera4Source)
-    @staticmethod
-    def frames():
-        while True:
-            # read current frame
-            _, frame = Camera4.camera.read()
-            _, jpeg = cv2.imencode('.jpg', frame)
-            yield jpeg.tobytes()
-            if(type(camera4Source) is str):
-                time.sleep(0.040)
-
-
-class Camera4Processed():
-    camera = cv2.VideoCapture(camera4Source)
-    @staticmethod
-    def frames():
-        while True:
-            # read current frame
-            _, frame = Camera4Processed.camera.read()
-            cv2.putText(frame, datetime.now().strftime("%Y/%m/%d-%H:%M:%S.%f")[:-3], (10, 30),
-                        cv2.FONT_HERSHEY_COMPLEX, 0.75, (255, 255, 255), 1)
-            _, jpeg = cv2.imencode('.jpg', frame)
-            yield jpeg.tobytes()
-            if(type(camera4Source) is str):
-                time.sleep(0.040)
-
-
-class Camera5():
-    camera = cv2.VideoCapture(camera5Source)
-    @staticmethod
-    def frames():
-        while True:
-            # read current frame
-            _, frame = Camera5.camera.read()
-            _, jpeg = cv2.imencode('.jpg', frame)
-            yield jpeg.tobytes()
-            if(type(camera5Source) is str):
-                time.sleep(0.040)
-
-
-class Camera5Processed():
-    camera = cv2.VideoCapture(camera5Source)
-    @staticmethod
-    def frames():
-        while True:
-            # read current frame
-            _, frame = Camera5Processed.camera.read()
-            cv2.putText(frame, datetime.now().strftime("%Y/%m/%d-%H:%M:%S.%f")[:-3], (10, 30),
-                        cv2.FONT_HERSHEY_COMPLEX, 0.75, (255, 255, 255), 1)
-            _, jpeg = cv2.imencode('.jpg', frame)
-            yield jpeg.tobytes()
-            if(type(camera5Source) is str):
-                time.sleep(0.040)
+for i in range(Streams):
+    exec("class Camera"+str(i)+"():\n\tcamera=cv2.VideoCapture(camera"+str(i)+"Source)\n\t@staticmethod\n\tdef frames():\n\t\twhile True:\n\t\t\t_, frame = Camera"+str(i)+".camera.read()\n\t\t\t_, jpeg = cv2.imencode(\".jpeg\", frame)\n\t\t\tyield jpeg.tobytes()\n\t\t\tif(type(camera"+str(i)+"Source) is str):\n\t\t\t\ttime.sleep(0.040)")
