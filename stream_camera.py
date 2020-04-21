@@ -36,5 +36,9 @@ for i in range(get_camera_feed.Streams):
          str(i)+"()),mimetype=\"multipart/x-mixed-replace; boundary=frame\")")
 
 
-if __name__ == '__main__':
+def run():
     app.run(host=host, threaded=True, port=port)
+
+
+if __name__ == '__main__':
+    run()
