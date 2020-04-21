@@ -2,11 +2,14 @@ import os
 import platform
 
 if platform.system() == "Windows":
-    testVideos = "D://Office//Google Drive//Projects//AI//Situational Awareness System//O2i-SAS//"
+    sasDir = os.path.join(
+        "D:\\", "Office", "Backup", "Projects Data", "AI", "Situational_Awareness_System", "Test Videos")
+    gitRepoDir = os.path.join(
+        "D:\\", "Office", "Google Drive", "Projects", "AI", "Situational Awareness System", "SAS")
 
 elif platform.system() == "Linux":
-    adTrackerDir = "/home/vivek/Test_Videos/"
+    sasDir = "/home/vivek/Test_Videos/"
     gitRepoDir = os.path.join("~/", "Test_Videos")
 
-cameraSource = [0, "test2.mp4", "test3.mp4", "test4.mp4", "test5.mp4", "test6.mp4",
-                "test7.mp4", "test8.mp4", "test9.mp4", "test10.mp4", "test11.mp4", "test12.mp4"]
+cameraSource = [0, "video1.mp4", "video2.mp4", "video2clip1.mp4", "weapontest.mp4", "weapontest2.mp4",
+                "weapontest3.mp4", "weapontest4.mp4"]
