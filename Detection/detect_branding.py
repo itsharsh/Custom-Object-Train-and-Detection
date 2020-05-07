@@ -12,6 +12,9 @@ import Detection
 import path_config
 from DB import update_db as DB
 
+from Camera import stream_camera
+from Camera import get_camera_feed
+
 sasDir = path_config.sasDir
 modelDir = path_config.modelDir
 modelName = path_config.detectionModelName
@@ -52,18 +55,30 @@ def loadModel():
     return classes, colors, net, ln
 
 
-def captureFrames(videoName):
-    baseTimestamp = Detection.getTimestampFromVideofile(videoName)
+# def captureFrames(videoName):
+def captureFrames():
+    print("started")
+   # cam = int(cam)
+    #    baseTimestamp = Detection.getTimestampFromVideofile(videoName)
     classes, colors, net, ln = loadModel()
 
-    videoRead = cv2.VideoCapture(os.path.join(
-        originalVideoDir, miscInfo["channelName"], videoName))
+#    videoRead = cv2.VideoCapture(os.path.join(
+#        originalVideoDir, miscInfo["channelName"], videoName))
+    videoRead = cv2.VideoCapture(0)
+   # if type(cameraSource[i]) == int:
+   #     videoRead = cv2.VideoCapture(camSource)
+#        exec("class Camera"+str(i)+"():\n\tdetect_branding.CaptureFrames(cameraSource["+str(i)+"]) \n\t\t\tif(type(cameraSource["+str(i)+"]) is str):\n\t\t\t\ttime.sleep(0.040)")
+#        exec("class Camera"+str(i)+"():\n\tcamera=cv2.VideoCapture(cameraSource["+str(i)+"])\n\t@staticmethod\n\tdef frames():\n\t\twhile True:\n\t\t\t_, frame = Camera"+str(
+ #           i)+".camera.read()\n\t\t\t_, jpeg = cv2.imencode(\".jpg\", frame)\n\t\t\timg1=jpeg.tostring()\n\t\t\tcv2.putText(frame, datetime.now().strftime(\"%Y/%m/%d-%H:%M:%S.%f""\")[:-3], (10, 30),\n\t\t\tcv2.FONT_HERSHEY_COMPLEX, 0.75, (255, 255, 255), 1)\n\t\t\t_, jpeg = cv2.imencode(\".png\", frame)\n\t\t\timg2=jpeg.tostring()\n\t\t\tyield img1,img2\n\t\t\tif(type(cameraSource["+str(i)+"]) is str):\n\t\t\t\ttime.sleep(0.040)")
+   # else:
+   #     videoRead = cv2.VideoCapture(videoPath+camSource)
+
     # (W, H) = frame.shape[:2]
     (W, H) = (int(videoRead.get(cv2.CAP_PROP_FRAME_WIDTH)),
               int(videoRead.get(cv2.CAP_PROP_FRAME_HEIGHT)))
 
-    videoWrite = cv2.VideoWriter(os.path.join(processedVideoDir, videoName),
-                                 cv2.VideoWriter_fourcc('m', 'p', '4', 'v'), miscInfo["videoFPS"], (W, H))
+#    videoWrite = cv2.VideoWriter(os.path.join(processedVideoDir, videoName),
+ #                                cv2.VideoWriter_fourcc('m', 'p', '4', 'v'), miscInfo["videoFPS"], (W, H))
     try:
         prop = cv2.cv.CV_CAP_PROP_FRAME_COUNT if imutils.is_cv2() else cv2.CAP_PROP_FRAME_COUNT
         total = int(videoRead.get(prop))
@@ -83,6 +98,8 @@ def captureFrames(videoName):
         if not grabbed:  # end of video
             break
 
+        _, jpeg = cv2.imencode(".jpg", frame)
+        img1 = jpeg.tostring()
         frameTime = timedelta(
             seconds=frameIndex/miscInfo["videoFPS"])
 
@@ -152,9 +169,12 @@ def captureFrames(videoName):
                     classIndex[classIDs[i]] = [frameIndex]
                 else:
                     classIndex[classIDs[i]].append(frameIndex)
+        _, jpeg = cv2.imencode(".jpg", frame)
+        img2 = jpeg.tostring()
 
+        yield img1, img2
         cv2.imshow("Frame", frame)
-        videoWrite.write(frame)
+       # videoWrite.write(frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             cv2.destroyAllWindows()
         #    break
@@ -162,19 +182,19 @@ def captureFrames(videoName):
         frameIndex += 1
 
     videoRead.release()
-    videoWrite.release()
+   # videoWrite.release()
     cv2.destroyAllWindows()
 
-    detectionInfo = {"classIndex": classIndex, "classes": classes,
-                     "baseTimestamp": baseTimestamp, "frameDimensions": (W, H)}
+#    detectionInfo = {"classIndex": classIndex, "classes": classes,
+ #                    "baseTimestamp": baseTimestamp, "frameDimensions": (W, H)}
 
-    return detectionInfo
+ #   return detectionInfo
 
 
 def run():
     init()
-    detectionInfo = captureFrames(miscInfo["videoName"])
-    DB.update(detectionInfo, miscInfo)
+    detectionInfo = captureFrames()
+ #   DB.update(detectionInfo, miscInfo)
     # runDetection(frame)  will be used after implementing pipelines
 
 

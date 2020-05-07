@@ -11,9 +11,9 @@ elif platform.system() == "Linux":
     sasDir = "/home/vivek/Test_Videos/"
     gitRepoDir = os.path.join("~/", "Test_Videos")
 
-cameraSource = [0, "video1.mp4", "video2.mp4", "video2clip1.mp4", "weapontest.mp4", "weapontest2.mp4",
-                "weapontest3.mp4", "weapontest4.mp4"]
-
+# cameraSource = [0, "video1.mp4", "video2.mp4", "video2clip1.mp4", "weapontest.mp4", "weapontest2.mp4",
+ #               "weapontest3.mp4", "weapontest4.mp4"]
+cameraSource = [0]
 
 #dbDir = os.path.join(gitRepoDir, "DB")
 dbDir = os.path.join(sasDir, "DB")
