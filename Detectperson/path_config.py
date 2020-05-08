@@ -14,4 +14,8 @@ elif platform.system() == "Linux":
 weightPath=os.path.join(detectPer,"Models","yolov3_weights.tf")
 configPath=os.path.join(detectPer,"Models","yolov3.cfg")
 namePath=os.path.join(detectPer,"Models","coco.names")
+csvPath=os.path.join(detectPer,"CSV","crowd.csv")
+testVideo=os.path.join("/home/vivek/","Test_Videos")
+testVideo=os.path.join(testVideo,"videoplayback (2).mp4")
+
 videoPath=0 # webcam

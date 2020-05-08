@@ -70,7 +70,7 @@ def draw_outputs(img, boxes, objectness, classes, nums, class_names,prevCount):
             #                 (x1y1), cv2.FONT_HERSHEY_PLAIN, 1, (0, 0, 255), 2)
             count+=1
         
-    img=cv2.putText(img,'Crowd : '+str(count),(10,50),cv2.FONT_HERSHEY_SIMPLEX, 1.25,(255,0,0),2,cv2.LINE_AA)
+    # img=cv2.putText(img,'Crowd : '+str(count),(10,50),cv2.FONT_HERSHEY_SIMPLEX, 1.25,(255,0,0),2,cv2.LINE_AA)
     if count>=15:
         cv2.imwrite("image"+str(count)+".jpg",img)
     print(count)

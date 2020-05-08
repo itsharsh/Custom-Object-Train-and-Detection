@@ -4,18 +4,17 @@ import sys
 import platform
 import pandas as pd
 from datetime import timedelta
+import path_config
 
 
-dbFilePath = "/home/vivek/myCsv.csv"
+dbFilePath = path_config.csvPath
 
 
 def update(detectInfo):
     csvCreate = open(dbFilePath, mode='w', newline='')
-    print("Done")
     with open(dbFilePath, mode='a+', newline='') as csvFile:
         fileWriter = csv.writer(csvFile, delimiter=',',
                                 quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        print("Done")
         header=["Index","Date","Time","Total Persons Count"]
         fileWriter.writerow(header) 
         for i in range(len(detectInfo["Index"])):
@@ -26,4 +25,4 @@ def update(detectInfo):
             time=detectInfo["time"][i].split("-")[1]
             row=[index,date,time,crowds]  
             fileWriter.writerow(row)
-        print("Done")
+    print("Csv Created")

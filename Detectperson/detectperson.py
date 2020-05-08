@@ -75,7 +75,7 @@ def main():
     #specify the vidoe input.
     # 0 means input from cam 0.
     # For vidio, just change the 0 to video path
-    cap = cv2.VideoCapture(path_config.videoPath)
+    cap = cv2.VideoCapture(path_config.testVideo)
     prop=cv2.CAP_PROP_FRAME_COUNT
     total=int(cap.get(prop))
     frame_size = (cap.get(cv2.CAP_PROP_FRAME_WIDTH),

@@ -140,6 +140,7 @@ def YOLOv3Net(cfgfile, model_size, num_classes):
 
             strides = (input_image.shape[1] // out_shape[1], \
                        input_image.shape[2] // out_shape[2])
+
             box_centers = (box_centers + cxy) * strides
 
             prediction = tf.concat([box_centers, box_shapes, confidence, classes], axis=-1)
