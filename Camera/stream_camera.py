@@ -2,14 +2,14 @@
 import os
 from importlib import import_module
 from flask import Flask, render_template, Response
-import webbrowser
+import cv2
 
 from Camera import get_camera_feed
 
 app = Flask("SAS")
 
 host = "localhost"
-port = 8888
+port = 5540
 
 
 @app.route('/')
@@ -46,7 +46,6 @@ for i in range(get_camera_feed.Streams):
 
 def run():
     app.run(host=host, threaded=True, port=port)
-
 
 if __name__ == '__main__':
     run()
