@@ -5,9 +5,6 @@ if platform.system() == "Windows":
     sasDir = os.path.join(
         "D:\\", "Office", "Backup", "Projects Data", "AI", "Situational_Awareness_System")
 
-    detectPer = os.path.join(
-        "D:\\", "Office", "Backup", "Projects Data", "AI", "Situational_Awareness_System", "Detectperson")
-
     gitRepoDir = os.path.join(
         "D:\\", "Office", "Google Drive", "Projects", "AI", "Situational Awareness System", "SAS")
 
@@ -20,6 +17,9 @@ elif platform.system() == "Linux":
  #               "weapontest3.mp4", "weapontest4.mp4"]
 cameraSource = [0]
 
+detectPer = os.path.join(sasDir"Detectperson")
+
+
 #dbDir = os.path.join(gitRepoDir, "DB")
 dbDir = os.path.join(sasDir, "DB")
 dbFilePath = os.path.join(dbDir, "adtrack.csv")
@@ -27,17 +27,6 @@ dbFilePath = os.path.join(dbDir, "adtrack.csv")
 modelDir = os.path.join(sasDir, "Model")
 originalVideoDir = os.path.join(sasDir, "Original Videos")
 processedVideoDir = os.path.join(sasDir,  "Processed Videos")
-#recordingVideoDir = os.path.join(sasDir, "Recordings")
-#clipsDir = os.path.join(adTrackerDir, "DTH", "Ad Clips")
-
-detectionModelName = "49_Ads"
-detectionModelConfigPath = os.path.join(
-    modelDir, detectionModelName, detectionModelName + "_test.cfg")
-detectionModelClassesPath = os.path.join(
-    modelDir, detectionModelName, detectionModelName + ".names")
-detectionModelWeightsPath = os.path.join(
-    modelDir, detectionModelName, detectionModelName + "_last.weights")
-
 
 weightPath = os.path.join(detectPer, "Models", "yolov3_weights.tf")
 configPath = os.path.join(detectPer, "Models", "yolov3.cfg")
@@ -47,4 +36,3 @@ csvPath = os.path.join(detectPer, "CSV", "crowd.csv")
 #testVideo = os.path.join(testVideo, "videoplayback (2).mp4")
 
 videoPath = 0  # webcam
-
