@@ -1,26 +1,17 @@
 #!/usr/bin/env python
+from Detection import detect_person
+import webbrowser
+from Camera import get_camera_feed
+import cv2
 import os
 from importlib import import_module
 from flask import Flask, render_template, Response
-<<<<<<< HEAD
-import cv2
 
-from Camera import get_camera_feed
-=======
-import webbrowser
-#from Detection import detect_branding
-#from Camera import get_camera_feed
-from Detection import detect_person
->>>>>>> Test-detect
 
 app = Flask("SAS")
 
 host = "localhost"
-<<<<<<< HEAD
-port = 5540
-=======
-port = 80
->>>>>>> Test-detect
+port = 8888
 
 
 @app.route('/')
@@ -62,6 +53,7 @@ def cameraprocessed0():
 
 def run():
     app.run(host=host, threaded=True, port=port)
+
 
 if __name__ == '__main__':
     run()
