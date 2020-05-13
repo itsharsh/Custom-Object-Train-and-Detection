@@ -25,16 +25,8 @@ import multiprocessing
 import time
 import cv2
 from yolov3 import utils
-from utils import load_class_names, output_boxes, draw_outputs, resize_image
-import tensorflow as tf
-<< << << < HEAD
-
-== == == =
 #from utils import load_class_names, output_boxes, draw_outputs, resize_image
->>>>>> > Test-detect
-
-#from yolov3 import YOLOv3Net
-
+import tensorflow as tf
 model_size = (352, 352, 3)
 num_classes = 80
 class_name = path_config.namePath
