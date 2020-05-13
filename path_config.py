@@ -4,16 +4,21 @@ import platform
 if platform.system() == "Windows":
     sasDir = os.path.join(
         "D:\\", "Office", "Backup", "Projects Data", "AI", "Situational_Awareness_System")
+
+    detectPer = os.path.join(
+        "D:\\", "Office", "Backup", "Projects Data", "AI", "Situational_Awareness_System", "Detectperson")
+
     gitRepoDir = os.path.join(
         "D:\\", "Office", "Google Drive", "Projects", "AI", "Situational Awareness System", "SAS")
 
 elif platform.system() == "Linux":
+    detectPer = "/home/vivek/SAS/Detectperson/"
     sasDir = "/home/vivek/Test_Videos/"
     gitRepoDir = os.path.join("~/", "Test_Videos")
 
-cameraSource = [0, "video1.mp4", "video2.mp4", "video2clip1.mp4", "weapontest.mp4", "weapontest2.mp4",
-                "weapontest3.mp4", "weapontest4.mp4"]
-
+# cameraSource = [0, "video1.mp4", "video2.mp4", "video2clip1.mp4", "weapontest.mp4", "weapontest2.mp4",
+ #               "weapontest3.mp4", "weapontest4.mp4"]
+cameraSource = [0]
 
 #dbDir = os.path.join(gitRepoDir, "DB")
 dbDir = os.path.join(sasDir, "DB")
@@ -33,13 +38,13 @@ detectionModelClassesPath = os.path.join(
 detectionModelWeightsPath = os.path.join(
     modelDir, detectionModelName, detectionModelName + "_last.weights")
 
-#detectionDate = "20200117"
-#detectionChannel = ["Star Sports 1", "Star Sports 1 Hindi"]
-#detectionChannel = ["testvid"]
-#detectionAd = []
-#brandName = "Merinolam"
 
-#brandDir = os.path.join(adTrackerDir, "Brand Data", brandName)
+weightPath = os.path.join(detectPer, "Models", "yolov3_weights.tf")
+configPath = os.path.join(detectPer, "Models", "yolov3.cfg")
+namePath = os.path.join(detectPer, "Models", "coco.names")
+csvPath = os.path.join(detectPer, "CSV", "crowd.csv")
+#testVideo = os.path.join("/home/vivek/", "Test_Videos")
+#testVideo = os.path.join(testVideo, "videoplayback (2).mp4")
 
-#detectionFilePath = os.path.join(brandDir, brandName+"_FCT.mp4")
-#brandNonFCTFilePath = os.path.join(brandDir, "Cropped")
+videoPath = 0  # webcam
+
