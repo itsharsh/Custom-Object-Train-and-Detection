@@ -10,7 +10,7 @@ from Detection import detect_person
 app = Flask("SAS")
 
 host = "localhost"
-port = 8888
+port = 80
 
 
 @app.route('/')
