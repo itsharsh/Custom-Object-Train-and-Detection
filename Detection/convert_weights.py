@@ -19,11 +19,10 @@ https://blog.paperspace.com/how-to-implement-a-yolo-object-detector-in-pytorch/
 import numpy as np
 from yolov3 import YOLOv3Net
 from yolov3 import parse_cfg
+import path_config
 
 
-
-
-def load_weights(model,cfgfile,weightfile):
+def load_weights(model, cfgfile, weightfile):
     # Open the weights file
     fp = open(weightfile, "rb")
 
@@ -37,7 +36,7 @@ def load_weights(model,cfgfile,weightfile):
 
         if (block["type"] == "convolutional"):
             conv_layer = model.get_layer('conv_' + str(i))
-            print("layer: ",i+1,conv_layer)
+            print("layer: ", i+1, conv_layer)
 
             filters = conv_layer.filters
             k_size = conv_layer.kernel_size[0]
@@ -46,10 +45,11 @@ def load_weights(model,cfgfile,weightfile):
             if "batch_normalize" in block:
 
                 norm_layer = model.get_layer('bnorm_' + str(i))
-                print("layer: ",i+1,norm_layer)
+                print("layer: ", i+1, norm_layer)
                 size = np.prod(norm_layer.get_weights()[0].shape)
 
-                bn_weights = np.fromfile(fp, dtype=np.float32, count=4 * filters)
+                bn_weights = np.fromfile(
+                    fp, dtype=np.float32, count=4 * filters)
                 # tf [gamma, beta, mean, variance]
                 bn_weights = bn_weights.reshape((4, filters))[[1, 0, 2, 3]]
 
@@ -76,17 +76,24 @@ def load_weights(model,cfgfile,weightfile):
 
 def main():
 
-    weightfile = "weights/yolov3.weights"
-    cfgfile = "cfg/yolov3.cfg"
 
-    model_size = (416, 416, 3)
-    num_classes = 80
+<< << << < HEAD
+weightfile = "weights/yolov3.weights"
+cfgfile = "cfg/yolov3.cfg"
+== == == =
+weightfile = "D:\Office\Backup\Projects Data\AI\Situational_Awareness_System\Detectperson\Models\yolov3.weights"
+cfgfile = "D:\Office\Backup\Projects Data\AI\Situational_Awareness_System\Detectperson\Models\yolov3.cfg"
+>>>>>> > Test-detect
 
-    model=YOLOv3Net(cfgfile,model_size,num_classes)
-    load_weights(model,cfgfile,weightfile)
+model_size = (416, 416, 3)
+num_classes = 80
 
-    try:
-        model.save_weights('weights/yolov3_weights.tf')
+ model = YOLOv3Net(cfgfile, model_size, num_classes)
+  load_weights(model, cfgfile, weightfile)
+
+   try:
+        model.save_weights(
+            'D:\Office\Backup\Projects Data\AI\Situational_Awareness_System\Detectperson\Models\yolov3_weights.tf')
         print('\nThe file \'yolov3_weights.tf\' has been saved successfully.')
     except IOError:
         print("Couldn't write the file \'yolov3_weights.tf\'.")
@@ -94,9 +101,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-
-
-
-
