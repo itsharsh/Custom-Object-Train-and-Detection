@@ -1,25 +1,5 @@
-"""
-Written by: Rahmad Sadli
-Website : https://machinelearningspace.com
-
-I finally made this program simple and readable
-Hopefully, this program will help some beginners like me to understand better object detection.
-If you want to redistribute it, just keep the author's name.
-
-In oder to execute this program, you need to install TensorFlow 2.0 and opencv 4.x
-
-For more details about how this program works. I explained well about it, just click the link below:
-https://machinelearningspace.com/the-beginners-guide-to-implementing-yolo-v3-in-tensorflow-2-0-part-1/
-
-Credit to:
-Ayoosh Kathuria who shared his great work using pytorch, really appreaciated it.
-https://blog.paperspace.com/how-to-implement-a-yolo-object-detector-in-pytorch/
-"""
-
-
 import tensorflow as tf
 from yolov3 import utils
-#from utils import load_class_names, output_boxes, draw_outputs, resize_image
 import cv2
 import time
 import multiprocessing
@@ -27,7 +7,6 @@ from datetime import datetime
 
 import path_config
 from yolov3 import yolov3
-#from yolov3 import YOLOv3Net
 from DB import create_CSV
 
 model_size = (352, 352, 3)
@@ -62,7 +41,7 @@ class run():
                   cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
     @staticmethod
-    def main():
+    def processed():
         count = 0
 #        prevCount = 0
         timeStamp = []
@@ -143,7 +122,7 @@ class run():
         create_CSV.update(detectInfo)
 
     @staticmethod
-    def main1():
+    def raw():
         while 1:
             ret, frame = run.cap.read()
             _, img1 = cv2.imencode(".jpg", frame)
@@ -151,12 +130,7 @@ class run():
 
 
 def Run():
-    start = time.perf_counter()
     run()
-    # p=multiprocessing.Process(target=main)
-    # p.start()
-    timing = time.perf_counter()-start
-    print("time", timing)
 
 
 if __name__ == '__main__':
