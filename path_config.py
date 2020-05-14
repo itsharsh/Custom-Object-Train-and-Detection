@@ -15,9 +15,15 @@ elif platform.system() == "Linux":
 
 # cameraSource = [0, "video1.mp4", "video2.mp4", "video2clip1.mp4", "weapontest.mp4", "weapontest2.mp4",
  #               "weapontest3.mp4", "weapontest4.mp4"]
+<<<<<<< HEAD
 cameraSource = [0,"1.mp4"]
 
 detectPer = os.path.join(detectPer,"Detection")
+=======
+cameraSource = [0, 1]
+
+detectPer = os.path.join(sasDir, "Detectperson")
+>>>>>>> ad35f1492a7f9efd2d8152a97a14f80c64354060
 
 
 #dbDir = os.path.join(gitRepoDir, "DB")
@@ -35,4 +41,4 @@ csvPath = os.path.join(detectPer, "CSV", "crowd.csv")
 #testVideo = os.path.join("/home/vivek/", "Test_Videos")
 #testVideo = os.path.join(testVideo, "videoplayback (2).mp4")
 
-videoPath = 0  # webcam
+# videoPath = 0  # webcam
