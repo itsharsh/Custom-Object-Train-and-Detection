@@ -9,15 +9,21 @@ if platform.system() == "Windows":
         "D:\\", "Office", "Google Drive", "Projects", "AI", "Situational Awareness System", "SAS")
 
 elif platform.system() == "Linux":
-    detectPer = "/home/vivek/SAS/Detectperson/"
+    detectPer = "/home/vivek/SAS/"
     sasDir = "/home/vivek/Test_Videos/"
     gitRepoDir = os.path.join("~/", "Test_Videos")
 
 # cameraSource = [0, "video1.mp4", "video2.mp4", "video2clip1.mp4", "weapontest.mp4", "weapontest2.mp4",
  #               "weapontest3.mp4", "weapontest4.mp4"]
+<<<<<<< HEAD
+cameraSource = [0,"1.mp4"]
+
+detectPer = os.path.join(detectPer,"Detection")
+=======
 cameraSource = [0, 1]
 
 detectPer = os.path.join(sasDir, "Detectperson")
+>>>>>>> ad35f1492a7f9efd2d8152a97a14f80c64354060
 
 
 #dbDir = os.path.join(gitRepoDir, "DB")

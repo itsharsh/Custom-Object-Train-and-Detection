@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 """
 Written by: Rahmad Sadli
 Website : https://machinelearningspace.com
@@ -27,6 +28,19 @@ import cv2
 from yolov3 import utils
 #from utils import load_class_names, output_boxes, draw_outputs, resize_image
 import tensorflow as tf
+=======
+import tensorflow as tf
+from yolov3 import utils
+import cv2
+import time
+import multiprocessing
+from datetime import datetime
+
+import path_config
+from yolov3 import yolov3
+from DB import create_CSV
+
+>>>>>>> Test-detect
 model_size = (352, 352, 3)
 num_classes = 80
 class_name = path_config.namePath
@@ -59,7 +73,7 @@ class run():
                   cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
     @staticmethod
-    def main():
+    def processed():
         count = 0
 #        prevCount = 0
         timeStamp = []
@@ -140,7 +154,7 @@ class run():
         create_CSV.update(detectInfo)
 
     @staticmethod
-    def main1():
+    def raw():
         while 1:
             ret, frame = run.cap.read()
             _, img1 = cv2.imencode(".jpg", frame)
@@ -148,12 +162,7 @@ class run():
 
 
 def Run():
-    start = time.perf_counter()
     run()
-    # p=multiprocessing.Process(target=main)
-    # p.start()
-    timing = time.perf_counter()-start
-    print("time", timing)
 
 
 if __name__ == '__main__':
