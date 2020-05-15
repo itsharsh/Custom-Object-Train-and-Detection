@@ -36,8 +36,9 @@ for i in range(Streams):
 
              "try:\n\t\t"
              "model.load_weights(weightfile)\n\t"
-             "except expression as identifier:\n\t\t"
-             "convert_weights_tf.run()\n\t"
+             "except:\n\t\t"
+             "convert_weights_tf.run()\n\t\t"
+             "model.load_weights(weightfile)\n\t"
 
              "class_names = utils.load_class_names(class_name)\n\t"
 
@@ -136,6 +137,10 @@ for i in range(Streams):
 
              "model = yolov3.YOLOv3Net(cfgfile, model_size, num_classes)\n\t"
 
+             "try:\n\t\t"
+             "model.load_weights(weightfile)\n\t"
+             "except:\n\t\t"
+             "convert_weights_tf.run()\n\t\t"
              "model.load_weights(weightfile)\n\t"
 
              "class_names = utils.load_class_names(class_name)\n\t"

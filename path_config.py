@@ -4,20 +4,20 @@ import platform
 if platform.system() == "Windows":
     if(os.getlogin() == "Harsh"):
         sasDir = os.path.join(
-            "D:\\", "Office", "Backup", "Projects Data", "Situational_Awareness_System")
+            "D:\\", "Office", "Backup", "Projects Data", "SAS")
 
     elif(os.getlogin() == "Ajeet"):
         sasDir = os.path.join(
-            "D:\\", "Office", "Backup", "Projects Data", "Situational_Awareness_System")
+            "D:\\", "Office", "Backup", "Projects Data", "SAS")
 
 elif platform.system() == "Linux":
     if(os.getlogin() == "harsh"):
-        sasDir = "/home/vivek/Test_Videos/"
+        sasDir = "/home/harsh/media/Projects Data/SAS/"
 
     elif(os.getlogin() == "vivek"):
         sasDir = "/home/vivek/Test_Videos/"
 
-cameraSource = [0]
+cameraSource = ["video1.mp4"]
 
 hostname = 'localhost'
 port = 8888
