@@ -1,11 +1,11 @@
 import cv2
 import time
-from datetime import datetime
 import tensorflow as tf
-from yolov3 import utils
 import multiprocessing
+from datetime import datetime
 
 import path_config
+from yolov3 import utils
 from yolov3 import yolov3
 from DB import create_CSV
 
