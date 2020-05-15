@@ -232,10 +232,10 @@ for i in range(Streams):
                     "yield img1.tobytes()\n\n")
 
 
-def Run():
+def run():
     for i in range(Streams):
         exec("run"+str(i)+"()")
 
 
 if __name__ == '__main__':
-    Run()
+    run()
