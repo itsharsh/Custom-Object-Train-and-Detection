@@ -1,30 +1,41 @@
 #!/usr/bin/env python
+from Detection import detect_person
+import webbrowser
+from Camera import get_camera_feed
+import cv2
 import os
 from importlib import import_module
 from flask import Flask, render_template, Response
+<<<<<<< HEAD
+
+=======
 import webbrowser
-from Detection import detect_branding
+#from Detection import detect_branding
 from Camera import get_camera_feed
+from Detection import detect_person
+from yolov3 import yolov3
+from yolov3 import utils
+>>>>>>> Test-detect
 
 app = Flask("SAS")
 
 host = "localhost"
-port = 80
+<<<<<<< HEAD
+port = 8888
+=======
+port = 8080
+>>>>>>> Test-detect
 
 
-@app.route('/')
-def index():
-    """Video streaming home page."""
-    return render_template('Stream.html')
+# @app.route('/')
+# def index():
+#     """Video streaming home page."""
+#     return render_template('Stream.html')
 
 
-mimetype = 'multipart/x-mixed-replace; boundary=frame'
-
-
-def gen(camera):
-    print("LL")
+def gen0(camera):
     """Video streaming generator function."""
-    for img1, img2 in detect_branding.captureFrames():
+    for img1 in camera:
         yield b'--frame\r\nContent-Type: image/jpeg\r\n\r\n'
         yield img1
         yield b'\r\n\r\n'
@@ -32,24 +43,21 @@ def gen(camera):
 
 def gen1(camera):
     """Video streaming generator function."""
-    for img1, img2 in detect_branding.captureFrames():
+    for img2 in camera:
         yield b'--frame\r\nContent-Type: image/jpeg\r\n\r\n'
         yield img2
         yield b'\r\n\r\n'
 
-
 for i in range(get_camera_feed.Streams):
-    print(i)
-    exec("@app.route(\"/camera"+str(i)+"\")\ndef camera"+str(i) +
-         "():return Response(gen(detect_branding.captureFrames()),mimetype=\"multipart/x-mixed-replace; boundary=frame\")")
-    exec("@app.route(\"/cameraprocessed"+str(i)+"\")\ndef cameraprocessed"+str(i) +
-         "():return Response(gen1(detect_branding.captureFrames()),mimetype=\"multipart/x-mixed-replace; boundary=frame\")")
+    exec("@app.route(\"/camera"+str(i)+"\")\n"
+    "def camera"+str(i)+"():\n\t"
+        "return Response(gen0(get_camera_feed.run"+str(i)+".raw()),\n\t\t\t\t\t"
+                        "mimetype=\"multipart/x-mixed-replace; boundary=frame\")\n")
 
-    # exec("@app.route(\"/camera"+str(i)+"\")\ndef camera"+str(i)+"():return Response(gen(get_camera_feed.Camera" +
-    #     str(i)+"()),mimetype=\"multipart/x-mixed-replace; boundary=frame\")")
-    # exec("@app.route(\"/cameraprocessed"+str(i)+"\")\ndef cameraprocessed"+str(i) +
-    #     "():return Response(gen1(get_camera_feed.Camera"+str(i)+"()),mimetype=\"multipart/x-mixed-replace; boundary=frame\")")
-
+    exec("@app.route(\"/cameraprocessed"+str(i)+"\")\n"
+    "def cameraprocessed"+str(i)+"():\n\t"
+        "return Response(gen1(get_camera_feed.run"+str(i)+".processed()),\n\t\t\t\t\t"
+                        "mimetype=\"multipart/x-mixed-replace; boundary=frame\")\n")
 
 def run():
     app.run(host=host, threaded=True, port=port)
