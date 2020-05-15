@@ -1,34 +1,3 @@
-<<<<<<< HEAD
-"""
-Written by: Rahmad Sadli
-Website : https://machinelearningspace.com
-
-I finally made this program simple and readable
-Hopefully, this program will help some beginners like me to understand better object detection.
-If you want to redistribute it, just keep the author's name.
-
-In oder to execute this program, you need to install TensorFlow 2.0 and opencv 4.x
-
-For more details about how this program works. I explained well about it, just click the link below:
-https://machinelearningspace.com/the-beginners-guide-to-implementing-yolo-v3-in-tensorflow-2-0-part-1/
-
-Credit to:
-Ayoosh Kathuria who shared his great work using pytorch, really appreaciated it.
-https://blog.paperspace.com/how-to-implement-a-yolo-object-detector-in-pytorch/
-"""
-
-
-from DB import create_CSV
-from yolov3 import yolov3
-import path_config
-from datetime import datetime
-import multiprocessing
-import time
-import cv2
-from yolov3 import utils
-#from utils import load_class_names, output_boxes, draw_outputs, resize_image
-import tensorflow as tf
-=======
 import tensorflow as tf
 from yolov3 import utils
 import cv2
@@ -40,7 +9,6 @@ import path_config
 from yolov3 import yolov3
 from DB import create_CSV
 
->>>>>>> Test-detect
 model_size = (352, 352, 3)
 num_classes = 80
 class_name = path_config.namePath

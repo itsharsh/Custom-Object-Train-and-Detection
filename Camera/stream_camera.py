@@ -1,30 +1,17 @@
 #!/usr/bin/env python
-from Detection import detect_person
-import webbrowser
-from Camera import get_camera_feed
-import cv2
 import os
 from importlib import import_module
 from flask import Flask, render_template, Response
-<<<<<<< HEAD
-
-=======
 import webbrowser
-#from Detection import detect_branding
 from Camera import get_camera_feed
-from Detection import detect_person
+#from Detection import detect_person
 from yolov3 import yolov3
 from yolov3 import utils
->>>>>>> Test-detect
 
 app = Flask("SAS")
 
 host = "localhost"
-<<<<<<< HEAD
-port = 8888
-=======
 port = 8080
->>>>>>> Test-detect
 
 
 # @app.route('/')
@@ -48,16 +35,20 @@ def gen1(camera):
         yield img2
         yield b'\r\n\r\n'
 
+
 for i in range(get_camera_feed.Streams):
     exec("@app.route(\"/camera"+str(i)+"\")\n"
-    "def camera"+str(i)+"():\n\t"
-        "return Response(gen0(get_camera_feed.run"+str(i)+".raw()),\n\t\t\t\t\t"
-                        "mimetype=\"multipart/x-mixed-replace; boundary=frame\")\n")
+         "def camera"+str(i)+"():\n\t"
+         "return Response(gen0(get_camera_feed.run" +
+         str(i)+".raw()),\n\t\t\t\t\t"
+         "mimetype=\"multipart/x-mixed-replace; boundary=frame\")\n")
 
     exec("@app.route(\"/cameraprocessed"+str(i)+"\")\n"
-    "def cameraprocessed"+str(i)+"():\n\t"
-        "return Response(gen1(get_camera_feed.run"+str(i)+".processed()),\n\t\t\t\t\t"
-                        "mimetype=\"multipart/x-mixed-replace; boundary=frame\")\n")
+         "def cameraprocessed"+str(i)+"():\n\t"
+         "return Response(gen1(get_camera_feed.run" +
+         str(i)+".processed()),\n\t\t\t\t\t"
+         "mimetype=\"multipart/x-mixed-replace; boundary=frame\")\n")
+
 
 def run():
     app.run(host=host, threaded=True, port=port)

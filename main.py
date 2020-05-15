@@ -4,7 +4,7 @@ from yolov3 import yolov3
 from yolov3 import utils
 
 # from Detection import detect_person
-from Camera import functions
+#from Camera import functions
 
 if __name__ == "__main__":
     stream_camera.run()

@@ -3,7 +3,7 @@ import platform
 
 if platform.system() == "Windows":
     sasDir = os.path.join(
-        "D:\\", "Office", "Backup", "Projects Data", "AI", "Situational_Awareness_System", "Output Videos")
+        "D:\\", "Office", "Backup", "Projects Data", "AI", "Situational_Awareness_System")
     gitRepoDir = os.path.join(
         "D:\\", "Office", "Google Drive", "Projects", "AI", "Situational Awareness System", "SAS")
 
@@ -14,7 +14,7 @@ elif platform.system() == "Linux":
 
 # cameraSource = [0, "video1.mp4", "video2.mp4", "video2clip1.mp4", "weapontest.mp4", "weapontest2.mp4",
  #               "weapontest3.mp4", "weapontest4.mp4"]
-cameraSource = [0, 1]
+cameraSource = [0]
 
 detectPer = os.path.join(sasDir, "Detectperson")
 
