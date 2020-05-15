@@ -4,10 +4,10 @@ import sys
 import platform
 import pandas as pd
 from datetime import timedelta
+
 import path_config
 
-
-dbFilePath = path_config.csvPath
+dbFilePath = path_config.dbFilePath
 
 
 def update(detectInfo):

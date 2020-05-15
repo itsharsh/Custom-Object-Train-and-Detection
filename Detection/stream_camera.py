@@ -2,12 +2,13 @@ import os
 import cv2
 from flask import Flask, Response
 
-from Camera import detect_camera
+import path_config
+from Detection import detect_camera
 
 app = Flask("SAS")
 
-host = "localhost"
-port = 8080
+host = path_config.hostname
+port = path_config.port
 
 
 def gen0(camera):

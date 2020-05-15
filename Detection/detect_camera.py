@@ -1,31 +1,29 @@
 import cv2
 import time
-import tensorflow as tf
 import multiprocessing
+import tensorflow as tf
 from datetime import datetime
 
 import path_config
-from yolov3 import utils
-from yolov3 import yolov3
 from DB import create_CSV
+from Model.yolov3 import utils
+from Model.yolov3 import yolov3
+from Model import convert_weights_tf
 
 model_size = (352, 352, 3)
 num_classes = 80
-class_name = path_config.namePath
 max_output_size = 100
 max_output_size_per_class = 20
 iou_threshold = 0.5
 confidence_threshold = 0.5
 
 
-cfgfile = path_config.configPath
-weightfile = path_config.weightPath
+cfgfile = path_config.configFilePath
+class_name = path_config.namesFilePath
+weightfile = path_config.tfWeightFile
 
-
-#from Detection import detect_branding
-
-videoPath = path_config.sasDir
 cameraSource = path_config.cameraSource
+videoPath = path_config.originalVideoDir
 
 Streams = len(cameraSource)
 
@@ -36,10 +34,12 @@ for i in range(Streams):
 
              "model = yolov3.YOLOv3Net(cfgfile, model_size, num_classes)\n\t"
 
+             "try:\n\t\t"
              "model.load_weights(weightfile)\n\t"
+             "except expression as identifier:\n\t\t"
+             "convert_weights_tf.run()\n\t"
 
              "class_names = utils.load_class_names(class_name)\n\t"
-
 
              "cap = cv2.VideoCapture(videoPath+cameraSource["+str(i)+"])\n\t"
              "prop = cv2.CAP_PROP_FRAME_COUNT\n\t"

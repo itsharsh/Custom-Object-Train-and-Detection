@@ -1,4 +1,6 @@
-from Camera import stream_camera
+from Detection import stream_camera
+from Model import convert_weights_tf
 
 if __name__ == "__main__":
-    stream_camera.run()
+    convert_weights_tf.run()
+    # stream_camera.run()

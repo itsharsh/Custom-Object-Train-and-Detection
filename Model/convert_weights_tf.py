@@ -1,12 +1,12 @@
 import numpy as np
 
 import path_config
-from Detection.yolov3 import YOLOv3Net
-from Detection.yolov3 import parse_cfg
+from Model.yolov3.yolov3 import YOLOv3Net
+from Model.yolov3.yolov3 import parse_cfg
 
-tfFile = path_config.tfFilePath
-weightFile = path_config.weightFilePath
+tfFile = path_config.tfWeightFile
 cfgFile = path_config.configFilePath
+weightFile = path_config.weightsFilePath
 
 
 def load_weights(model, cfgFile, weightFile):

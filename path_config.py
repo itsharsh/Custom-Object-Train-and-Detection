@@ -2,37 +2,34 @@ import os
 import platform
 
 if platform.system() == "Windows":
-    sasDir = os.path.join(
-        "D:\\", "Office", "Backup", "Projects Data", "AI", "Situational_Awareness_System")
-    gitRepoDir = os.path.join(
-        "D:\\", "Office", "Google Drive", "Projects", "AI", "Situational Awareness System", "SAS")
-    detectPer = "/home/vivek/SAS/"
+    if(os.getlogin() == "Harsh"):
+        sasDir = os.path.join(
+            "D:\\", "Office", "Backup", "Projects Data", "Situational_Awareness_System")
 
+    elif(os.getlogin() == "Ajeet"):
+        sasDir = os.path.join(
+            "D:\\", "Office", "Backup", "Projects Data", "Situational_Awareness_System")
 
 elif platform.system() == "Linux":
-    detectPer = "/home/vivek/SAS/"
-    sasDir = "/home/vivek/Test_Videos/"
-    gitRepoDir = os.path.join("~/", "Test_Videos")
+    if(os.getlogin() == "harsh"):
+        sasDir = "/home/vivek/Test_Videos/"
 
-# cameraSource = [0, "video1.mp4", "video2.mp4", "video2clip1.mp4", "weapontest.mp4", "weapontest2.mp4",
- #               "weapontest3.mp4", "weapontest4.mp4"]
+    elif(os.getlogin() == "vivek"):
+        sasDir = "/home/vivek/Test_Videos/"
+
 cameraSource = [0]
 
-detectPer = os.path.join(sasDir, "Detectperson")
+hostname = 'localhost'
+port = 8888
 
-#dbDir = os.path.join(gitRepoDir, "DB")
-dbDir = os.path.join(sasDir, "DB")
-dbFilePath = os.path.join(dbDir, "adtrack.csv")
+dbFilePath = os.path.join(sasDir, "DB", "sas.csv")
 
+modelName = "yolov3ORIG"
 modelDir = os.path.join(sasDir, "Model")
-originalVideoDir = os.path.join(sasDir, "Original Videos")
-processedVideoDir = os.path.join(sasDir,  "Processed Videos")
+tfWeightFile = os.path.join(modelDir, modelName, modelName+".tf")
+configFilePath = os.path.join(modelDir, modelName, modelName+".cfg")
+namesFilePath = os.path.join(modelDir, modelName, modelName+".names")
+weightsFilePath = os.path.join(modelDir, modelName, modelName + ".weights")
 
-weightPath = os.path.join(detectPer, "Models", "yolov3_weights.tf")
-configPath = os.path.join(detectPer, "Models", "yolov3.cfg")
-namePath = os.path.join(detectPer, "Models", "coco.names")
-csvPath = os.path.join(detectPer, "CSV", "crowd.csv")
-#testVideo = os.path.join("/home/vivek/", "Test_Videos")
-#testVideo = os.path.join(testVideo, "videoplayback (2).mp4")
-
-# videoPath = 0  # webcam
+originalVideoDir = os.path.join(sasDir, "Original")
+processedVideoDir = os.path.join(sasDir, "Processed")
