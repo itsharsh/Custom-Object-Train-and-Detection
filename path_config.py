@@ -15,9 +15,9 @@ elif platform.system() == "Linux":
         sasDir = "/home/harsh/media/Projects Data/SAS/"
 
     elif(os.getlogin() == "vivek"):
-        sasDir = "/home/vivek/Test_Videos/"
+        sasDir = "/home/vivek/Projects Data/SAS"
 
-cameraSource = ["video1.mp4"]
+cameraSource = [0,"1.mp4"]
 
 hostname = 'localhost'
 port = 8888
