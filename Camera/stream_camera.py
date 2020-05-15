@@ -3,13 +3,13 @@ import os
 from importlib import import_module
 from flask import Flask, render_template, Response
 import webbrowser
-
+from Detection import detect_branding
 from Camera import get_camera_feed
 
 app = Flask("SAS")
 
 host = "localhost"
-port = 8888
+port = 80
 
 
 @app.route('/')
@@ -22,8 +22,9 @@ mimetype = 'multipart/x-mixed-replace; boundary=frame'
 
 
 def gen(camera):
+    print("LL")
     """Video streaming generator function."""
-    for img1, img2 in camera.frames():
+    for img1, img2 in detect_branding.captureFrames():
         yield b'--frame\r\nContent-Type: image/jpeg\r\n\r\n'
         yield img1
         yield b'\r\n\r\n'
@@ -31,17 +32,23 @@ def gen(camera):
 
 def gen1(camera):
     """Video streaming generator function."""
-    for img1, img2 in camera.frames():
+    for img1, img2 in detect_branding.captureFrames():
         yield b'--frame\r\nContent-Type: image/jpeg\r\n\r\n'
         yield img2
         yield b'\r\n\r\n'
 
 
 for i in range(get_camera_feed.Streams):
-    exec("@app.route(\"/camera"+str(i)+"\")\ndef camera"+str(i)+"():return Response(gen(get_camera_feed.Camera" +
-         str(i)+"()),mimetype=\"multipart/x-mixed-replace; boundary=frame\")")
+    print(i)
+    exec("@app.route(\"/camera"+str(i)+"\")\ndef camera"+str(i) +
+         "():return Response(gen(detect_branding.captureFrames()),mimetype=\"multipart/x-mixed-replace; boundary=frame\")")
     exec("@app.route(\"/cameraprocessed"+str(i)+"\")\ndef cameraprocessed"+str(i) +
-         "():return Response(gen1(get_camera_feed.Camera"+str(i)+"()),mimetype=\"multipart/x-mixed-replace; boundary=frame\")")
+         "():return Response(gen1(detect_branding.captureFrames()),mimetype=\"multipart/x-mixed-replace; boundary=frame\")")
+
+    # exec("@app.route(\"/camera"+str(i)+"\")\ndef camera"+str(i)+"():return Response(gen(get_camera_feed.Camera" +
+    #     str(i)+"()),mimetype=\"multipart/x-mixed-replace; boundary=frame\")")
+    # exec("@app.route(\"/cameraprocessed"+str(i)+"\")\ndef cameraprocessed"+str(i) +
+    #     "():return Response(gen1(get_camera_feed.Camera"+str(i)+"()),mimetype=\"multipart/x-mixed-replace; boundary=frame\")")
 
 
 def run():
