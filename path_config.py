@@ -12,12 +12,14 @@ if platform.system() == "Windows":
 
 elif platform.system() == "Linux":
     if(os.getlogin() == "harsh"):
-        sasDir = "/home/harsh/media/Projects Data/SAS/"
+        sasDir = os.path.join(
+            "/home", "harsh", "media", "Projects Data","SAS")
 
     elif(os.getlogin() == "vivek"):
-        sasDir = "/home/vivek/Projects Data/SAS"
+        sasDir = os.path.join(
+            "/home","vivek","Projects Data","SAS")
 
-cameraSource = [0,"1.mp4"]
+cameraSource = [0,"videoplayback (4).mp4"]
 
 hostname = 'localhost'
 port = 8888

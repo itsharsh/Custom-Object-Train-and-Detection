@@ -3,39 +3,12 @@ import sys
 import cv2
 from random import randint
 import time
-
-trackerTypes = ['BOOSTING', 'MIL', 'KCF','TLD', 'MEDIANFLOW', 'GOTURN', 'MOSSE', 'CSRT']
-
-def createTrackerByName(trackerType):
-    # Create a tracker based on tracker name
-    if trackerType == trackerTypes[0]:
-        tracker = cv2.TrackerBoosting_create()
-    elif trackerType == trackerTypes[1]: 
-        tracker = cv2.TrackerMIL_create()
-    elif trackerType == trackerTypes[2]:
-        tracker = cv2.TrackerKCF_create()
-    elif trackerType == trackerTypes[3]:
-        tracker = cv2.TrackerTLD_create()
-    elif trackerType == trackerTypes[4]:
-        tracker = cv2.TrackerMedianFlow_create()
-    elif trackerType == trackerTypes[5]:
-        tracker = cv2.TrackerGOTURN_create()
-    elif trackerType == trackerTypes[6]:
-        tracker = cv2.TrackerMOSSE_create()
-    elif trackerType == trackerTypes[7]:
-        tracker = cv2.TrackerCSRT_create()
-    else:
-        tracker = None
-        print('Incorrect tracker name')
-        print('Available trackers are:')
-        for t in trackerTypes:
-            print(t)
-        
-    return tracker
+import path_config
+cameraSource = path_config.cameraSource
+videoPath = path_config.originalVideoDir
 
 
-
-def trackingFrame(frame,bboxes,colors,trackerType):
+def trackingFrame(frame,bboxes,colors):
     while True:
         # draw bounding boxes over objects
         # selectROI's default behaviour is to draw box starting from the center
@@ -51,22 +24,10 @@ def trackingFrame(frame,bboxes,colors,trackerType):
             
     print('Selected bounding boxes {}'.format(bboxes))
 
-    ## Initialize MultiTracker
-    # There are two ways you can initialize multitracker
-    # 1. tracker = cv2.MultiTracker("CSRT")
-    # All the trackers added to this multitracker
-    # will use CSRT algorithm as default
-    # 2. tracker = cv2.MultiTracker()
-    # No default algorithm specified
-
-    # Initialize MultiTracker with tracking algo
-    # Specify tracker type        
-    # Create MultiTracker object
     multiTracker = cv2.MultiTracker_create()
 
-            # Initialize MultiTracker 
     for bbox in bboxes:
-        multiTracker.add(createTrackerByName(trackerType), frame, bbox)
+        multiTracker.add(cv2.TrackerCSRT_create(), frame, bbox)
     return bboxes,colors,multiTracker
 
 
@@ -75,17 +36,9 @@ def trackingFrame(frame,bboxes,colors,trackerType):
 def run():
     prevbox=[]
     print("Default tracking algoritm is CSRT \n"
-            "Available tracking algorithms are:\n")
-    for t in trackerTypes:
-        print(t)      
+            "Available tracking algorithms are:\n")      
 
-    trackerType = "CSRT"      
-
-    # Set video to load
-    # videoPath = 0
-    videoPath = "/home/vivek/Test_Videos/videoplayback (4).mp4"
-    # Create a video capture object to read videos
-    cap = cv2.VideoCapture(videoPath)
+    cap = cv2.VideoCapture(videoPath+cameraSource[1])
     (W, H) = (int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)),
               int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)))
 
@@ -106,7 +59,7 @@ def run():
         if cv2.waitKey(1) & 0xFF == 32:
         # OpenCV's selectROI function doesn't work for selecting multiple objects in Python
         # So we will call this function in a loop till we are done selecting all objects
-            bboxes,colors,multiTracker=trackingFrame(frame,bboxes,colors,trackerType)
+            bboxes,colors,multiTracker=trackingFrame(frame,bboxes,colors)
         if bboxes!=[]:
             break
         time.sleep(0.04)
@@ -148,7 +101,7 @@ def run():
 
             end=time.time()-t1
             fps=1/end
-            print("Fps",fps)
+            # print("Fps",fps)
             
 
             # quit on ESC button
