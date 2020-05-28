@@ -73,6 +73,7 @@ def trackingFrame(frame,bboxes,colors,trackerType):
 
 
 def run():
+    prevbox=[]
     print("Default tracking algoritm is CSRT \n"
             "Available tracking algorithms are:\n")
     for t in trackerTypes:
@@ -125,9 +126,19 @@ def run():
             for i, newbox in enumerate(boxes):
                 p1 = (int(newbox[0]), int(newbox[1]))
                 p2 = (int(newbox[0] + newbox[2]), int(newbox[1] + newbox[3]))
+                if prevbox!=[]:
+                    if prevbox[0]>p1[0] and (prevbox[0]+prevbox[2])>p2[0]:
+                        print("Pan-Left")
+                    elif prevbox[1]>p1[1] and (prevbox[1]+prevbox[3])>p2[1]:
+                        print("Tilt-Down") 
+                    elif prevbox[0]<p1[0] and (prevbox[0]+prevbox[2])<p2[0]:
+                        print("Pan-Right")
+                    elif prevbox[1]<p1[1] and (prevbox[1]+prevbox[3])<p2[1]:
+                        print("Tilt-Up")
                 cv2.rectangle(frame, p1, p2, colors[i], 2, 1)
                 time.sleep(0.04)
-                yield boxes,(W,H)
+                prevbox=newbox
+                # yield boxes,(W,H)
                 cv2.imshow('Frame', frame)
             if cv2.waitKey(1) & 0xFF == 32:
                 bboxes,colors=[],[]
