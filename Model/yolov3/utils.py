@@ -66,13 +66,9 @@ def draw_outputs(img, boxes, objectness, classes, nums, class_names):
             timeStamp = datetime.now().strftime("%Y/%m/%d-%H:%M:%S.%f")[:-3]
 
             img = cv2.rectangle(img, (x1y1), (x2y2), (255, 0, 0), 2)
-
-            # img = cv2.putText(img, '{} {:.4f}'.format(
-            #     class_names[int(classes[i])], objectness[i]),
-            #                 (x1y1), cv2.FONT_HERSHEY_PLAIN, 1, (0, 0, 255), 2)
+            img = cv2.circle(img, (x1y1), 10, (255, 0, 0), -1)
             count += 1
 
-    # img=cv2.putText(img,'Crowd : '+str(count),(10,50),cv2.FONT_HERSHEY_SIMPLEX, 1.25,(255,0,0),2,cv2.LINE_AA)
     if count >= 15:
         cv2.imwrite("image"+str(count)+".jpg", img)
     print(count)

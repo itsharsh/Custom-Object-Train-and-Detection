@@ -12,12 +12,14 @@ if platform.system() == "Windows":
 
 elif platform.system() == "Linux":
     if(os.getlogin() == "harsh"):
-        sasDir = "/home/harsh/media/Projects Data/SAS/"
+        sasDir = os.path.join(
+            "/home", "harsh", "media", "Projects Data","SAS")
 
     elif(os.getlogin() == "vivek"):
-        sasDir = "/home/vivek/Test_Videos/"
+        sasDir = os.path.join(
+            "/home","vivek","Projects Data","SAS")
 
-cameraSource = ["video1.mp4"]
+cameraSource = [0,"videoplayback (4).mp4"]
 
 hostname = 'localhost'
 port = 8888
@@ -31,5 +33,5 @@ configFilePath = os.path.join(modelDir, modelName, modelName+".cfg")
 namesFilePath = os.path.join(modelDir, modelName, modelName+".names")
 weightsFilePath = os.path.join(modelDir, modelName, modelName + ".weights")
 
-originalVideoDir = os.path.join(sasDir, "Original")
-processedVideoDir = os.path.join(sasDir, "Processed")
+originalVideoDir = os.path.join(sasDir, "Original/")
+processedVideoDir = os.path.join(sasDir, "Processed/")

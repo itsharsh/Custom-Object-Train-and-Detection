@@ -15,7 +15,8 @@ def update(detectInfo):
     with open(dbFilePath, mode='a+', newline='') as csvFile:
         fileWriter = csv.writer(csvFile, delimiter=',',
                                 quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        header = ["Index", "Date", "Time", "Total Persons Count"]
+        header = ["DB Index", "Date", "Time", "Total Persons Count"]
+        # header = ["DB Index", "Date", "Time", "Total Persons Count"]
         fileWriter.writerow(header)
         for i in range(len(detectInfo["Index"])):
             index = detectInfo["Index"][i]
