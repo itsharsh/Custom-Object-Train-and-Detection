@@ -6,9 +6,9 @@ from datetime import datetime
 
 import path_config
 from DB import create_CSV
-from Model.yolov3 import utils
-from Model.yolov3 import yolov3
-from Model import convert_weights_tf
+from Models.yolov3 import utils
+from Models.yolov3 import yolov3
+from Models import convert_weights_tf
 
 model_size = (352, 352, 3)
 num_classes = 80
