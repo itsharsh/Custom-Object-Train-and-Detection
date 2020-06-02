@@ -1,6 +1,5 @@
 import cv2
 import time
-import multiprocessing
 import tensorflow as tf
 from datetime import datetime
 
@@ -118,7 +117,6 @@ for i in range(Streams):
              "print(\"finish\", end1)\n\t\t"
              "print(\"total frame\", total)\n\t\t"
              "print(\"Count\", count)\n\t\t"
-             "num_processes = multiprocessing.cpu_count()\n\t\t"
              "print(\"Number of CPU: \" + str(num_processes))\n\t\t"
 
              "detectInfo = {\"Index\": classIndex,\"crowd\": crowdNum, \"time\": timeStamp}\n\t\t"
@@ -222,7 +220,6 @@ for i in range(Streams):
              "print(\"finish\", end1)\n\t\t"
              "print(\"total frame\", total)\n\t\t"
              "print(\"Count\", count)\n\t\t"
-             "num_processes = multiprocessing.cpu_count()\n\t\t"
              "print(\"Number of CPU: \" + str(num_processes))\n\t\t"
 
              "detectInfo = {\"Index\": classIndex,\"crowd\": crowdNum, \"time\": timeStamp}\n\t\t"
