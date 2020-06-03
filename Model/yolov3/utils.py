@@ -66,7 +66,6 @@ def draw_outputs(img, boxes, objectness, classes, nums, class_names):
             timeStamp = datetime.now().strftime("%Y/%m/%d-%H:%M:%S.%f")[:-3]
 
             img = cv2.rectangle(img, (x1y1), (x2y2), (255, 0, 0), 2)
-            img = cv2.circle(img, (x1y1), 10, (255, 0, 0), -1)
             count += 1
 
     if count >= 15:

@@ -33,5 +33,5 @@ configFilePath = os.path.join(modelDir, modelName, modelName+".cfg")
 namesFilePath = os.path.join(modelDir, modelName, modelName+".names")
 weightsFilePath = os.path.join(modelDir, modelName, modelName + ".weights")
 
-originalVideoDir = os.path.join(sasDir, "Original/")
-processedVideoDir = os.path.join(sasDir, "Processed/")
+originalVideoDir = os.path.join(sasDir, "Original Videos")
+processedVideoDir = os.path.join(sasDir, "Processed Videos")
