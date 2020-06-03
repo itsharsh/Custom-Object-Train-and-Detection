@@ -106,8 +106,8 @@ for i in range(Streams):
 
              "fps = 1 / seconds\n\t\t\t\t"
              "print(\"Estimated frames per second : {0}\".format(fps))\n\t\t\t\t"
-             "if count == 100:\n\t\t\t\t\t"
-             "break\n\t\t\t\t"
+            #  "if count == 100:\n\t\t\t\t\t"
+            #  "break\n\t\t\t\t"
              "count += 1\n\t\t\t\t"
 
              "key = cv2.waitKey(1) & 0xFF\n\t\t\t\t"
@@ -210,8 +210,8 @@ for i in range(Streams):
 
              "fps = 1 / seconds\n\t\t\t\t"
              "print(\"Estimated frames per second : {0}\".format(fps))\n\t\t\t\t"
-             "if count == 100:\n\t\t\t\t\t"
-             "break\n\t\t\t\t"
+            #  "if count == 100:\n\t\t\t\t\t"
+            #  "break\n\t\t\t\t"
              "count += 1\n\t\t\t\t"
 
              "key = cv2.waitKey(1) & 0xFF\n\t\t\t\t"
