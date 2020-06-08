@@ -54,24 +54,27 @@ def draw_outputs(img, boxes, objectness, classes, nums, class_names):
     # def draw_outputs(img, boxes, objectness, classes, nums, class_names,prevCount):
     boxes, objectness, classes, nums = boxes[0], objectness[0], classes[0], nums[0]
     boxes = np.array(boxes)
+    bboxes=[]
+    box=[]
     count = 0
     timeStamp = 0
     for i in range(nums):
         if class_names[int(classes[i])] == 'person':
 
-            x1y1 = tuple(
-                (boxes[i, 0:2] * [img.shape[1], img.shape[0]]).astype(np.int32))
-            x2y2 = tuple(
-                (boxes[i, 2:4] * [img.shape[1], img.shape[0]]).astype(np.int32))
+            box = (tuple(
+                (boxes[i, 0:2] * [img.shape[1], img.shape[0]]).astype(np.int32)),
+            tuple(
+                (boxes[i, 2:4] * [img.shape[1], img.shape[0]]).astype(np.int32)))
             timeStamp = datetime.now().strftime("%Y/%m/%d-%H:%M:%S.%f")[:-3]
 
-            img = cv2.rectangle(img, (x1y1), (x2y2), (255, 0, 0), 2)
+            img = cv2.rectangle(img, box[0], box[1], (255, 0, 0), 2)
             count += 1
+        bboxes.append(box)
 
     if count >= 15:
         cv2.imwrite("image"+str(count)+".jpg", img)
     print(count)
-    return img, timeStamp, count
+    return img, timeStamp, count, bboxes
 
 
 def load_class_names(file_name):
