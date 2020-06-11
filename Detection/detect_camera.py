@@ -83,7 +83,7 @@ for i in range(Streams):
              "iou_threshold=iou_threshold,\n\t\t\t\t\t"
              "confidence_threshold=confidence_threshold)\n\n\t\t\t\t"
 
-             "img, getTime, persons = utils.draw_outputs(\n\t\t\t\t\t"
+             "img, getTime, persons, bboxes = utils.draw_outputs(\n\t\t\t\t\t"
              "frame, boxes, scores, classes, nums, run" +
              str(i)+".class_names)\n\t\t\t\t"
              "cv2.putText(img, datetime.now().strftime(\"%Y/%m/%d-%H:%M:%S.%f\")\n\t\t\t\t\t\t\t"
@@ -187,7 +187,7 @@ for i in range(Streams):
              "iou_threshold=iou_threshold,\n\t\t\t\t\t"
              "confidence_threshold=confidence_threshold)\n\n\t\t\t\t"
 
-             "img, getTime, persons = utils.draw_outputs(\n\t\t\t\t\t"
+             "img, getTime, persons, bboxes = utils.draw_outputs(\n\t\t\t\t\t"
              "frame, boxes, scores, classes, nums, run" +
              str(i)+".class_names)\n\t\t\t\t"
              "cv2.putText(img, datetime.now().strftime(\"%Y/%m/%d-%H:%M:%S.%f\")\n\t\t\t\t\t\t\t"
