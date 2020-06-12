@@ -54,9 +54,11 @@ def draw_outputs(img, boxes, objectness, classes, nums, class_names):
     # def draw_outputs(img, boxes, objectness, classes, nums, class_names,prevCount):
     boxes, objectness, classes, nums = boxes[0], objectness[0], classes[0], nums[0]
     boxes = np.array(boxes)
+    bboxes = []
+    box = []
     count = 0
     timeStamp = 0
-    bboxes=[]
+    bboxes = []
     for i in range(nums):
         if class_names[int(classes[i])] == 'person':
 
@@ -69,8 +71,8 @@ def draw_outputs(img, boxes, objectness, classes, nums, class_names):
             img = cv2.rectangle(img, box[0], box[1], (255, 0, 0), 2)
             count += 1
             bboxes.append(box)
-    print("crowd:",count)
-    return img, timeStamp, count,bboxes
+    print("crowd:", count)
+    return img, timeStamp, count, bboxes
 
 
 def load_class_names(file_name):
