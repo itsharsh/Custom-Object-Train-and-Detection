@@ -2,15 +2,14 @@ import cv2
 import os
 import re
 import time
-import multiprocessing
 import tensorflow as tf
 from datetime import datetime
 
 import path_config
 from DB import create_CSV
-from Model.yolov3 import utils
-from Model.yolov3 import yolov3
-from Model import convert_weights_tf
+from Models.yolov3 import utils
+from Models.yolov3 import yolov3
+from Models import convert_weights_tf
 
 model_size = (352, 352, 3)
 num_classes = 80
@@ -122,7 +121,6 @@ for i in range(Streams):
              "end1 = time.perf_counter()-start1\n\t\t"
              "print(\"finish\", end1)\n\t\t"
              "print(\"Count\", count)\n\t\t"
-             "num_processes = multiprocessing.cpu_count()\n\t\t"
              "print(\"Number of CPU: \" + str(num_processes))\n\t\t"
 
              "detectInfo = {\"Index\": classIndex,\"crowd\": crowdNum, \"time\": timeStamp}\n\t\t"
@@ -226,7 +224,6 @@ for i in range(Streams):
              "end1 = time.perf_counter()-start1\n\t\t"
              "print(\"finish\", end1)\n\t\t"
              "print(\"Count\", count)\n\t\t"
-             "num_processes = multiprocessing.cpu_count()\n\t\t"
              "print(\"Number of CPU: \" + str(num_processes))\n\t\t"
 
              "detectInfo = {\"Index\": classIndex,\"crowd\": crowdNum, \"time\": timeStamp}\n\t\t"
