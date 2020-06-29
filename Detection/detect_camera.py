@@ -49,11 +49,11 @@ for i in range(Streams):
 
              "@staticmethod\n\t"
              "def processed():\n\t\t"
-             "count = 0\n\t\t"
              "timeStamp = []\n\t\t"
              "crowdNum = []\n\t\t"
-             "index = 0\n\t\t"
-             "classIndex = []\n\t\t"
+             "frameIndex = 0\n\t\t"
+             "sourceFileName = []\n\t\t"    
+             "classIndex = [None]*len(run"+str(i)+".class_names)\n\t\t"
              "classesName = []\n\t\t"
              "datetimeFormat = datetime.now().strftime(\"%Y/%m/%d-%H:%M:%S.%f\")[:-3]\n\t\t"
              "videoName=\"\".join(re.split(\"/|:\",datetimeFormat))\n\t\t"
@@ -91,8 +91,11 @@ for i in range(Streams):
              "if getTime != 0:\n\t\t\t\t\t"
              "timeStamp.append(getTime)\n\t\t\t\t\t"
              "crowdNum.append(persons)\n\t\t\t\t\t"
-             "index += 1\n\t\t\t\t\t"
-             "classIndex.append(index)\n\n\t\t\t\t"
+             "sourceFileName.append(videoName.split(\".\")[0])\n\t\t\t\t\t"
+             "if classIndex[0] is None:\n\t\t\t\t\t\t"
+             "classIndex[0] = [frameIndex]\n\t\t\t\t\t"
+             "else:\n\t\t\t\t\t\t"
+             "classIndex[0].append(frameIndex)\n\n\t\t\t\t"
              "videoWrite.write(img)\n\n\t\t\t\t"
 
              "_, img2 = cv2.imencode(\".jpg\", img)\n\t\t\t\t"
@@ -106,9 +109,9 @@ for i in range(Streams):
 
              "fps = 1 / seconds\n\t\t\t\t"
              "print(\"Estimated frames per second : {0}\".format(fps))\n\t\t\t\t"
-            #  "if count == 100:\n\t\t\t\t\t"
-            #  "break\n\t\t\t\t"
-             "count += 1\n\t\t\t\t"
+             "if frameIndex == 50:\n\t\t\t\t\t"
+             "break\n\t\t\t\t"
+             "frameIndex += 1\n\t\t\t\t"
 
              "key = cv2.waitKey(1) & 0xFF\n\t\t\t\t"
 
@@ -121,11 +124,11 @@ for i in range(Streams):
                     "print('Detections have been performed successfully.')\n\t\t"
              "end1 = time.perf_counter()-start1\n\t\t"
              "print(\"finish\", end1)\n\t\t"
-             "print(\"Count\", count)\n\t\t"
+             "print(\"Count\", frameIndex)\n\t\t"
              "num_processes = multiprocessing.cpu_count()\n\t\t"
              "print(\"Number of CPU: \" + str(num_processes))\n\t\t"
 
-             "detectInfo = {\"Index\": classIndex,\"crowd\": crowdNum, \"time\": timeStamp}\n\t\t"
+             "detectInfo = {\"Index\": classIndex,\"crowd\": crowdNum, \"time\": timeStamp, \"Source File\": sourceFileName}\n\t\t"
 
              "create_CSV.update(detectInfo)\n\t"
 
@@ -152,11 +155,11 @@ for i in range(Streams):
 
              "@staticmethod\n\t"
              "def processed():\n\t\t"
-             "count = 0\n\t\t"
              "timeStamp = []\n\t\t"
              "crowdNum = []\n\t\t"
-             "index = 0\n\t\t"
-             "classIndex = []\n\t\t"
+             "frameIndex = 0\n\t\t"
+             "sourceFileName = []\n\t\t"
+             "classIndex = [None]*len(run"+str(i)+".class_names)\n\t\t"
              "classesName = []\n\t\t"
              "datetimeFormat = datetime.now().strftime(\"%Y/%m/%d-%H:%M:%S.%f\")[:-3]\n\t\t"
              "videoName=\"\".join(re.split(\"/|:\",datetimeFormat))\n\t\t"
@@ -195,8 +198,11 @@ for i in range(Streams):
              "if getTime != 0:\n\t\t\t\t\t"
              "timeStamp.append(getTime)\n\t\t\t\t\t"
              "crowdNum.append(persons)\n\t\t\t\t\t"
-             "index += 1\n\t\t\t\t\t"
-             "classIndex.append(index)\n\n\t\t\t\t"
+             "sourceFileName.append(videoName.split(\".\")[0])\n\t\t\t\t\t"
+             "if classIndex[0] is None:\n\t\t\t\t\t\t"
+             "classIndex[0] = [frameIndex]\n\t\t\t\t\t"
+             "else:\n\t\t\t\t\t\t"
+             "classIndex[0].append(frameIndex)\n\n\t\t\t\t"
              "videoWrite.write(img)\n\n\t\t\t\t"
 
              "_, img2 = cv2.imencode(\".jpg\", img)\n\t\t\t\t"
@@ -210,9 +216,9 @@ for i in range(Streams):
 
              "fps = 1 / seconds\n\t\t\t\t"
              "print(\"Estimated frames per second : {0}\".format(fps))\n\t\t\t\t"
-            #  "if count == 100:\n\t\t\t\t\t"
-            #  "break\n\t\t\t\t"
-             "count += 1\n\t\t\t\t"
+             "if frameIndex == 50:\n\t\t\t\t\t"
+             "break\n\t\t\t\t"
+             "frameIndex += 1\n\t\t\t\t"
 
              "key = cv2.waitKey(1) & 0xFF\n\t\t\t\t"
 
@@ -225,11 +231,11 @@ for i in range(Streams):
                     "print('Detections have been performed successfully.')\n\t\t"
              "end1 = time.perf_counter()-start1\n\t\t"
              "print(\"finish\", end1)\n\t\t"
-             "print(\"Count\", count)\n\t\t"
+             "print(\"Count\", frameIndex)\n\t\t"
              "num_processes = multiprocessing.cpu_count()\n\t\t"
              "print(\"Number of CPU: \" + str(num_processes))\n\t\t"
 
-             "detectInfo = {\"Index\": classIndex,\"crowd\": crowdNum, \"time\": timeStamp}\n\t\t"
+             "detectInfo = {\"Index\": classIndex,\"crowd\": crowdNum, \"time\": timeStamp, \"Source File\": sourceFileName}\n\t\t"
 
              "create_CSV.update(detectInfo)\n\t"
 
