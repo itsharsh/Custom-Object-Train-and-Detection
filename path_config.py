@@ -1,4 +1,5 @@
 import os
+import getpass
 import platform
 
 if platform.system() == "Windows":
@@ -11,7 +12,11 @@ if platform.system() == "Windows":
             "D:\\", "Office", "Backup", "Projects Data", "SAS")
 
 elif platform.system() == "Linux":
-    if(os.getlogin() == "harsh"):
+    if(getpass.getuser() == "ai-ctrl"):
+        sasDir = os.path.join(
+            "/home", "ai-ctrl", "Aj___", "Office", "Backup", "Projects_Data", "AI", "Situational_Awareness_System")
+
+    elif(os.getlogin() == "harsh"):
         sasDir = os.path.join(
             "/home", "harsh", "media", "Projects Data","SAS")
 
@@ -19,14 +24,16 @@ elif platform.system() == "Linux":
         sasDir = os.path.join(
             "/home","vivek","Projects Data","SAS")
 
-cameraSource = [0,"videoplayback (4).mp4"]
+cameraSource = [0,"1"]
 
 hostname = 'localhost'
 port = 8888
 
 dbFilePath = os.path.join(sasDir, "DB", "sas.csv")
 
-modelName = "yolov3ORIG"
+#modelName = "yolov3ORIG"
+#modelName="LicencePlate"
+modelName = "LPdetect"
 modelDir = os.path.join(sasDir, "Model")
 tfWeightFile = os.path.join(modelDir, modelName, modelName+".tf")
 configFilePath = os.path.join(modelDir, modelName, modelName+".cfg")
