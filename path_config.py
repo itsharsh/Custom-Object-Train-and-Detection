@@ -24,7 +24,7 @@ elif platform.system() == "Linux":
         sasDir = os.path.join(
             "/home","vivek","Projects Data","SAS")
 
-cameraSource = [0,"1"]
+cameraSource = [0,"MUMBAI TRAFFIC - INDIA.mp4"]
 
 hostname = 'localhost'
 port = 8888
@@ -33,7 +33,7 @@ dbFilePath = os.path.join(sasDir, "DB", "sas.csv")
 
 #modelName = "yolov3ORIG"
 #modelName="LicencePlate"
-modelName = "LPdetect"
+modelName = "LP"
 modelDir = os.path.join(sasDir, "Model")
 tfWeightFile = os.path.join(modelDir, modelName, modelName+".tf")
 configFilePath = os.path.join(modelDir, modelName, modelName+".cfg")
