@@ -4,7 +4,7 @@ from flask import Flask, Response
 
 import path_config
 #from Detection import detect_camera
-from Detection import detect_face
+from Detection import detect_Face
 from Detection import detect_plate
 
 app = Flask("SAS")
@@ -42,7 +42,7 @@ for i in range(detect_camera.Streams):
         str(i)+".processed()),\n\t\t\t\t\t"
         "mimetype=\"multipart/x-mixed-replace; boundary=frame\")\n")
 '''
-
+'''
 for i in range(detect_plate.Streams):
     exec("@app.route(\"/camera"+str(i)+"\")\n"
     "def camera"+str(i)+"():\n\t"
@@ -58,20 +58,19 @@ for i in range(detect_plate.Streams):
 
 
 '''
-for i in range(detect_face.Streams):
+for i in range(detect_Face.Streams):
     exec("@app.route(\"/camera"+str(i)+"\")\n"
     "def camera"+str(i)+"():\n\t"
-        "return Response(gen0(detect_face.run" +
+        "return Response(gen0(detect_Face.run" +
         str(i)+".raw()),\n\t\t\t\t\t"
         "mimetype=\"multipart/x-mixed-replace; boundary=frame\")\n")
 
     exec("@app.route(\"/cameraprocessed"+str(i)+"\")\n"
     "def cameraprocessed"+str(i)+"():\n\t"
-        "return Response(gen1(detect_face.run" +
+        "return Response(gen1(detect_Face.run" +
         str(i)+".processed()),\n\t\t\t\t\t"
         "mimetype=\"multipart/x-mixed-replace; boundary=frame\")\n")
 
-'''
 
 def run():
     app.run(host=host, threaded=True, port=port)
