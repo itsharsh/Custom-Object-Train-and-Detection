@@ -40,5 +40,15 @@ configFilePath = os.path.join(modelDir, modelName, modelName+".cfg")
 namesFilePath = os.path.join(modelDir, modelName, modelName+".names")
 weightsFilePath = os.path.join(modelDir, modelName, modelName + ".weights")
 
+
+modelName = "face-detection-retail-0005"
+Precision="FP16"
+
+openvino_modelDir = os.path.join(sasDir, "OpenvinoModels",modelName, Precision)
+binFilePath = os.path.join(openvino_modelDir , modelName+".bin")
+xmlFilePath = os.path.join(openvino_modelDir , modelName+".xml")
+
+
+
 originalVideoDir = os.path.join(sasDir, "Original")
 processedVideoDir = os.path.join(sasDir, "Processed")
