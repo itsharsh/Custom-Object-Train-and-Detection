@@ -6,6 +6,7 @@ __pycache__
 *.cfg
 *.names
 *.csv
+*.jpg
 *.pyc
 SASenv
 Junk Code

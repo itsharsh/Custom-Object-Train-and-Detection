@@ -1,5 +1,6 @@
 import cv2
-#import numpy as np
+import csv
+import numpy as np
 import os
 import re
 import time
@@ -16,11 +17,14 @@ weightfile = path_config.xmlFilePath
 
 cameraSource = path_config.cameraSource
 #videoPath = path_config.originalVideoDir
-videoPath= "/home/ai-ctrl/Aj___/Projectss/v3realtime/walking.mp4"
+#videoPath= "/home/ai-ctrl/Aj___/Projectss/v3realtime/walking.mp4"
+
+videoPath = "/home/ai-ctrl/Aj___/Office/gitrepository/SAS/head-pose-face-detection-female.mp4"
 #processedVideoDir=path_config.processedVideoDir
 #makeDirectoryCommand = "mkdir -p \"{}\"".format(processedVideoDir)
 #os.system(makeDirectoryCommand)
 Streams = len(cameraSource)
+file = "/home/ai-ctrl/Documents/cordfile.csv"
 
 
 net = cv2.dnn.readNet(weightfile,cfgfile)
@@ -66,12 +70,40 @@ for i in range(Streams):
              "ymax = int(detection[6] * frame.shape[0])\n\t\t\t\t"
              "if confidence > .5:\n\t\t\t\t\t"
              "cv2.rectangle(frame, (xmin, ymin), (xmax, ymax), color=(0, 255, 0))\n\t\t\t\t"
+             "if os.path.exists(file):\n\t\t\t\t\t"
+
+                 "cords = []\n\t\t\t\t\t"
+
+                 "with open(file, 'r') as csvfile:\n\t\t\t\t\t\t"
+                     "print(\"opening File\")\n\t\t\t\t\t\t"
+                     "csvreader = csv.reader(csvfile)\n\t\t\t\t\t\t"
+                     "for row in csvreader:\n\t\t\t\t\t\t\t"
+                         "print(row)\n\t\t\t\t\t\t\t"
+                         "cords.append(row)\n\t\t\t\t\t\t"
+                    
+#                    print(cords)
+                     "xCord = int(cords[-1][0])\n\t\t\t\t\t\t"
+                     "yCord = int(cords[-1][1])\n\t\t\t\t\t\t"
+                     #"print("xCord{}  yCord {}".format(xCord,yCord))
+#                    plr = cpt
+#                    cpt += 1
+                     "if xmin < xCord > xmax and ymin < yCord > ymax:\n\t\t\t\t\t\t\t"
+                         "print(\"face_present\")\n\t\t\t\t\t\t\t"
+                         "cropped = frame[ymin:ymax,xmin:xmax]\n\t\t\t\t\t\t\t"
+                         "print(\"gett croppped portion\")\n\t\t\t\t\t\t\t"
+                         "timestr = time.strftime(\"%Y%m%d-%H%M%S\")\n\t\t\t\t\t\t\t"
+                         "cropFace = cv2.imwrite(\"im%s_L.jpg\" %timestr, cropped)\n\t\t\t\t\t\t\t"
+                        #"cropFace = cv2.imwrite(\"im%s_L.jpg\" %timestr,frame[ymin:ymax,xmin:xmax])\n\t\t\t\t\t\t\t"
+                         "cv2.imshow(\"cropFace\",cropFace)\n\t\t\t\t\t\t\t"
+                         "print(\"written cropface image\")\n\t\t\t\t\t\t\t"
+                         "os.remove(file)\n\t\t\t"
+
 
                 # Save the frame to an image file
         #    cv.imwrite('outjj.png', frame) 
-             "cv2.startWindowThread()\n\t\t\t"
-             "cv2.namedWindow(\"preview\")\n\t\t\t"
-             "cv2.imshow(\"preview\", frame)\n\t\t\t"
+         #    "cv2.startWindowThread()\n\t\t\t"
+          #   "cv2.namedWindow(\"preview\")\n\t\t\t"
+           #  "cv2.imshow(\"preview\", frame)\n\t\t\t"
              "_, img2 = cv2.imencode(\".jpg\", frame)\n\t\t\t"
              "img2 = img2.tobytes()\n\t\t\t"
              "yield img2\n\t"
@@ -114,12 +146,38 @@ for i in range(Streams):
              "ymax = int(detection[6] * frame.shape[0])\n\t\t\t\t"
              "if confidence > .5:\n\t\t\t\t\t"
              "cv2.rectangle(frame, (xmin, ymin), (xmax, ymax), color=(0, 255, 0))\n\t\t\t\t"
+             "if os.path.exists(file):\n\t\t\t\t\t"
+                 "cords = []\n\t\t\t\t\t"
+                 "with open(file, 'r') as csvfile:\n\t\t\t\t\t\t"
+                     "print(\"opening File\")\n\t\t\t\t\t\t"
+                     "csvreader = csv.reader(csvfile)\n\t\t\t\t\t\t"
+                     "for row in csvreader:\n\t\t\t\t\t\t\t"
+                         "print(row)\n\t\t\t\t\t\t\t"
+                         "cords.append(row)\n\t\t\t\t\t\t"
+#                    print(cords)
+                     "xCord = int(cords[-1][0])\n\t\t\t\t\t\t"
+                     "yCord = int(cords[-1][1])\n\t\t\t\t\t\t"
+                     "print(\"xmin: {} , xmax: {} , ymin: {}, ymax: {}\".format(xmin,xmax,ymin,ymax))\n\t\t\t\t\t\t"
+                     #"print("xCord{}  yCord {}".format(xCord,yCord))
+#                    plr = cpt
+#                    cpt += 1
+                     "if xmin < xCord > xmax and ymin < yCord > ymax:\n\t\t\t\t\t\t\t"
+                         "print(\"face_present\")\n\t\t\t\t\t\t\t"
+                         "cropped = frame[ymin:ymax,xmin:xmax]\n\t\t\t\t\t\t\t"
+                         "print(\"cropped\")\n\t\t\t\t\t\t\t"
+                         "timestr = time.strftime(\"%Y%m%d-%H%M%S\")\n\t\t\t\t\t\t\t"
+                         "cropFace = cv2.imwrite(\"im%s_L.jpg\" %timestr,cropped)\n\t\t\t\t\t\t\t"
+                         "cv2.imshow(\"cropFace\",cropFace)\n\t\t\t\t\t\t\t"
+                         "print(\"written cropface image\")\n\t\t\t\t\t\t\t"
+                         "os.remove(file)\n\t\t\t"
+
+
 
                 # Save the frame to an image file
         #    cv.imwrite('outjj.png', frame) 
-             "cv2.startWindowThread()\n\t\t\t"
-             "cv2.namedWindow(\"preview\")\n\t\t\t"
-             "cv2.imshow(\"preview\", frame)\n\t\t\t"
+         #    "cv2.startWindowThread()\n\t\t\t"
+          #   "cv2.namedWindow(\"preview\")\n\t\t\t"
+           #  "cv2.imshow(\"preview\", frame)\n\t\t\t"
              "_, img2 = cv2.imencode(\".jpg\", frame)\n\t\t\t"
              "img2 = img2.tobytes()\n\n\t\t\t"
              "yield img2\n\t"

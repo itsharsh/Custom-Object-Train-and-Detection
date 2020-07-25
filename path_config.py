@@ -24,7 +24,7 @@ elif platform.system() == "Linux":
         sasDir = os.path.join(
             "/home","vivek","Projects Data","SAS")
 
-cameraSource = [0,"MUMBAI TRAFFIC - INDIA.mp4"]
+cameraSource = [0,1,"MUMBAI TRAFFIC - INDIA.mp4"]
 
 hostname = 'localhost'
 port = 8888
